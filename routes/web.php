@@ -18,6 +18,4 @@ Nova::routes()
     ->withPasswordResetRoutes()
     ->register();
 
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
+Route::get('/welcome', \App\Http\Controllers\TestController::class);
