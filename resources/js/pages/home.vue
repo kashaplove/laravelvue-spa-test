@@ -1,18 +1,26 @@
 <template>
   <div class="row">
     <div class="col-lg-10 m-auto">
-      <card :title="$t('home')">
-        {{ $t('you_are_logged_in') }}
+      <card title="Все тарифы">
+        <Category></Category>
       </card>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
+import Category from '../components/Category'
 export default {
+  name: 'Index',
   middleware: 'auth',
-
+  data () {
+    return {
+      categories: null
+    }
+  },
+  components: {
+    Category
+  },
   // async asyncData () {
   //   const { data: projects } = await axios.get('/api/projects')
 
