@@ -15,6 +15,16 @@ class CreateRateUsersTable extends Migration
     {
         Schema::create('rate_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('rate_id');
+            $table->unsignedBigInteger('user_id');
+
+            //IDX
+            $table->index('rate_id','pul_rate_idx');
+            $table->index('user_id','pul_user_idx');
+
+            //FOREIGN KEY
+            $table->foreign('rate_id','rate_user_fk')->on('rates')->references('id');
+            $table->foreign('user_id','rate_user_fk')->on('users')->references('id');
             $table->timestamps();
         });
     }

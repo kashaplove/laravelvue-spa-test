@@ -3,11 +3,13 @@
     <img :src="rate.image" class="card-img-top" alt="...">
     <h5 class="card-title">{{ rate.title }}</h5>
     <p class="card-text">{{ rate.description }}</p>
-    <a href="#" class="btn btn-primary" @click.prevent="subscribe(rate.id)">Подписаться</a>
+    <a v-if="!rate.is_subscribed" href="#" class="btn btn-primary" @click.prevent="subscribe(rate.id)">Подписаться</a>
+    <p v-else class="text-secondary">Вы подписаны</p>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Rate',
   props: [
@@ -15,7 +17,13 @@ export default {
   ],
   methods: {
     subscribe (id) {
-      console.log(id)
+      axios.post(`api/user/subscribe/${id}`)
+        .then(res => {
+          this.$parent.getCategories()
+        })
+        .catch(err => {
+          console.log(err.response)
+        })
     }
   }
 }

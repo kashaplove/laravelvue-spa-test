@@ -115,4 +115,9 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     {
         return [];
     }
+
+    public function subscribedRates()
+    {
+        return $this->belongsToMany(Rate::class,'rate_users','user_id','rate_id')->withPivot('user_id', 'rate_id');
+    }
 }

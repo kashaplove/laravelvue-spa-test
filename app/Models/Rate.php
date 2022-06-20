@@ -15,4 +15,8 @@ class Rate extends Model
     public function category() {
         return $this->belongsTo(Category::class,'category_id', 'id');
     }
+
+    public function subscribedUsers() {
+        return $this->belongsToMany(User::class,'rate_users','rate_id','user_id');
+    }
 }

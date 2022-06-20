@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\RateUser;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RateResource extends JsonResource
@@ -20,6 +21,7 @@ class RateResource extends JsonResource
             'description' => $this->description,
             'category_id' => $this->category_id,
             'image' => $this->image,
+            'is_subscribed' => in_array($this->id, auth()->user()->subscribedRates->pluck('id')->toArray())
         ];
     }
 }

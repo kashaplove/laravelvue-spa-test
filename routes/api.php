@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/password', [PasswordController::class, 'update']);
 
     Route::get('categories', App\Http\Controllers\Category\IndexController::class);
+
+    Route::post('user/subscribe/{rate}', [\App\Http\Controllers\SubscribeController::class, 'subscribe']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

@@ -27,8 +27,7 @@ export default {
 
   data () {
     return {
-      categories: null,
-      rates: null
+      categories: null
     }
   },
   mounted () {
@@ -39,9 +38,13 @@ export default {
       axios.get('api/categories')
         .then(res => {
           this.categories = res.data.data
+          console.log('1111')
+        })
+        .catch(err => {
+          console.log(err.response)
         })
     }
-  },
+  }
 }
 </script>
 
