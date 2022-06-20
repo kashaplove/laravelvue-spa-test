@@ -30,9 +30,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
 
-
+    Route::get('categories', App\Http\Controllers\Category\IndexController::class);
 });
-Route::get('categories', [App\Http\Controllers\Category\IndexController::class, '__invoke']);
 
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', [LoginController::class, 'login']);
