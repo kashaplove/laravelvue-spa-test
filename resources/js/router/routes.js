@@ -20,7 +20,8 @@ export default [
     children: [
       { path: '', redirect: { name: 'settings.profile' } },
       { path: 'profile', name: 'settings.profile', component: page('settings/profile.vue') },
-      { path: 'password', name: 'settings.password', component: page('settings/password.vue') }
+      { path: 'password', name: 'settings.password', component: page('settings/password.vue') },
+      { path: 'rates', name: 'settings.rates', component: page('settings/myRates.vue') }
     ]
   },
 

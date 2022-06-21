@@ -14,7 +14,7 @@ class RateFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
+            'title' => $this->faker->colorName,
             'description' => $this->faker->sentence,
             'image' => $this->faker->imageUrl,
             'category_id' => $this->faker->numberBetween(1,10)

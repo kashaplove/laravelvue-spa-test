@@ -16,17 +16,16 @@ class SubscribeController extends Controller
            'user_id' => auth()->user()->id,
            'rate_id' => $rate->id,
        ]);
-//       return response(null, Response::HTTP_NO_CONTENT);
-//        return $rate;
-        return new RateResource($rate);
+       return new RateResource($rate);
+    }
 
-//        $rateUsers = RateUser::where('user_id', auth()->user()->id)->get();
-//        $rates = [];
-//        foreach ($rateUsers as $rateUser)
-//        {
-//            $rates[] = $rateUser->rate_id;
-//        }
-//        return $rates;
-
+    public function unSubscribe(Rate $rate)
+    {
+        $rateUser = RateUser::where([
+            ['rate_id', '=', $rate->id],
+            ['user_id', '=', auth()->user()->id],
+        ]);
+        $rateUser->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

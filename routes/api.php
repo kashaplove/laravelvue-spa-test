@@ -30,9 +30,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
 
-    Route::get('categories', App\Http\Controllers\Category\IndexController::class);
+    Route::get('/categories', App\Http\Controllers\Category\IndexController::class);
 
     Route::post('user/subscribe/{rate}', [\App\Http\Controllers\SubscribeController::class, 'subscribe']);
+    Route::post('user/unsubscribe/{rate}', [\App\Http\Controllers\SubscribeController::class, 'unSubscribe']);
+
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

@@ -1,6 +1,5 @@
 <template>
-  <div class="card-body">
-    <img :src="rate.image" class="card-img-top" alt="...">
+  <div class="card-body" :style="{'background-image': 'url(' + rate.image +')'}">
     <h5 class="card-title">{{ rate.title }}</h5>
     <p class="card-text">{{ rate.description }}</p>
     <a v-if="!rate.is_subscribed" href="#" class="btn btn-primary" @click.prevent="subscribe(rate.id)">Подписаться</a>
@@ -17,13 +16,12 @@ export default {
   ],
   methods: {
     subscribe (id) {
-      axios.post(`api/user/subscribe/${id}`)
-        .then(res => {
-          this.$parent.getCategories()
-        })
-        .catch(err => {
-          console.log(err.response)
-        })
+      if (confirm('Приобрести подписку?')) {
+        axios.post(`api/user/subscribe/${id}`)
+          .then(res => {
+            this.$parent.getCategories()
+          })
+      }
     }
   }
 }

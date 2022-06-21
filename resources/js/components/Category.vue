@@ -1,7 +1,10 @@
 <template>
   <div class="row">
+    <div v-if="errored" class="alert alert-danger" role="alert">
+      Ошибка загрузки данных!
+    </div>
     <div v-for="category in categories" class="col-lg-4 mb-3">
-      <div class="card" style="width: 18rem;">
+      <div class="card w-100" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">
             {{ category.title }}
@@ -27,7 +30,8 @@ export default {
 
   data () {
     return {
-      categories: null
+      categories: null,
+      errored: false
     }
   },
   mounted () {
@@ -38,10 +42,9 @@ export default {
       axios.get('api/categories')
         .then(res => {
           this.categories = res.data.data
-          console.log('1111')
         })
         .catch(err => {
-          console.log(err.response)
+          this.errored = true
         })
     }
   }

@@ -11,7 +11,6 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::all();
-        return CategoryResource::collection($categories);
+        return CategoryResource::collection(Category::all());
     }
 }
